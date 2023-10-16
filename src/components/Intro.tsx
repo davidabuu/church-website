@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Navbar from "./Navbar";
 
 const Intro: React.FC = () => {
@@ -33,7 +33,7 @@ const Intro: React.FC = () => {
           </h1>
           <p className="text-sm lg:text-lg animate__animated animate__fadeInUp animate__delay-1s">
             Join our close-knit community for worship, fellowship, and service.
-            Together, let's build a haven of hope and kindness.
+            Together, let&apos;s build a haven of hope and kindness.
           </p>
           <button className="mt-4 bg-[#AA9055] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded animate__animated animate__fadeInUp animate__delay-2s">
             Get Started
