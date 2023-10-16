@@ -2,9 +2,6 @@ import React from "react";
 import Navbar from "./Navbar";
 
 const Intro: React.FC = () => {
-
-
-
   return (
     <div
       className="relative min-h-screen bg-cover bg-center"
@@ -14,11 +11,11 @@ const Intro: React.FC = () => {
       <div className="absolute inset-0 bg-black opacity-50"></div>
 
       {/* Navigation */}
-      <nav className="absolute top-0 left-0 right-0 p-4 text-white">
+      <nav className="fixed top-0  left-0 right-0 p-4 text-white">
         <div className="container mx-auto flex items-center justify-between">
           {/* Your logo */}
           <div className="text-lg lg:text-2xl font-bold">
-            Church of Annunciation Parish, Abuja Kubwa
+            Catholic Church of Annunciation Parish, Arab Road Kubwa Abuja
           </div>
           <Navbar />
           {/* Mobile menu button */}
