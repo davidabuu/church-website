@@ -14,6 +14,7 @@ const Page = () => {
   return (
     <div>
       <Intro />
+
       <AboutUs />
     </div>
   );

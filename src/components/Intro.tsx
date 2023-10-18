@@ -11,16 +11,7 @@ const Intro: React.FC = () => {
       <div className="absolute inset-0 bg-black opacity-50"></div>
 
       {/* Navigation */}
-      <nav className="fixed top-0  left-0 right-0 p-4 text-white">
-        <div className="container mx-auto flex items-center justify-between">
-          {/* Your logo */}
-          <div className="text-lg lg:text-2xl font-bold">
-            Catholic Church of Annunciation Parish, Arab Road Kubwa Abuja
-          </div>
-          <Navbar />
-          {/* Mobile menu button */}
-        </div>
-      </nav>
+     <Navbar />
 
       {/* Main Content */}
       <div className="relative z-10 flex items-center justify-center min-h-screen">

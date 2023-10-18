@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import Slide from "./Slide";
 
 const About = () => {
   return (
@@ -9,16 +10,10 @@ const About = () => {
       className="mt-4 mb-4 justify-evenly items-center flex flex-col sm:flex-row"
     >
       <div className="">
-        <h2 className="text-3xl  text-[#AA9055] font-bold mb-4 border-b-4 border-[#AA9055]">
+        <h2 className="text-3xl  text-[#AA9055] font-bold mb-4 ">
           About Us
         </h2>
-        <Image
-          src={"/pic2.jpg"}
-          alt="Hello"
-          width={400}
-          height={300}
-          className="object-cover rounded-lg"
-        />
+        <Slide />
       </div>
       <br></br>
       <div className="w-full sm:w-[50%] px-4 sm:px-8">

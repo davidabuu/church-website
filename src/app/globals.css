@@ -41,16 +41,64 @@ ul li {
   width: 10% !important;
   margin: 0 auto
 }
-#box {
-  
-  position: relative;
-  border-bottom: 2px solid #0004ff;
-  background: #cccaca;
+
+
+@keyframes bgChangeUp {
+  0% {background-color: inherit;}
+  100% {background-color: #AA9055;}
 }
 
-#borderLeft {
-  border-left: 2px solid #0004ff;
-  position: absolute;
-  top: 50%;
-  bottom: 0;
+
+
+.Handle-Site-Title {
+  top: 0;
+  animation-name: bgChangeUp;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  transition: ease-in 1.5s;
+  animation-fill-mode: forwards;
 }
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Default styles for .swiper */
+.swiper {
+  width: 500px;
+  height: 300px;
+  /* Add other styles as needed */
+}
+
+/* Media query for devices with a maximum width of 768 pixels (adjust as needed) */
+@media(max-width: 768px) and (min-width:500px) {
+  .swiper {
+    width: 420px; /* Make the width 100% of the container */
+    height: 250px; /* Allow the height to adjust based on content */
+    /* Add other styles as needed for smaller screens */
+  }
+}
+
+
+@media(max-width: 499px) and (min-width:280px) {
+  .swiper {
+    width: 330px; /* Make the width 100% of the container */
+    height: 200px; /* Allow the height to adjust based on content */
+    /* Add other styles as needed for smaller screens */
+  }
+}
+
