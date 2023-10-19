@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "./Navbar";
+import { Link } from "react-scroll";
 
 const Intro: React.FC = () => {
   return (
@@ -11,7 +12,7 @@ const Intro: React.FC = () => {
       <div className="absolute inset-0 bg-black opacity-50"></div>
 
       {/* Navigation */}
-     <Navbar />
+      <Navbar />
 
       {/* Main Content */}
       <div className="relative z-10 flex items-center justify-center min-h-screen">
@@ -23,8 +24,16 @@ const Intro: React.FC = () => {
             Join our close-knit community for worship, fellowship, and service.
             Together, let&apos;s build a haven of hope and kindness.
           </p>
-          <button className="mt-4 bg-[#AA9055] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded animate__animated animate__fadeInUp animate__delay-2s">
-            Get Started
+
+          <button className="mt-4 bg-[#AA9055] text-white font-bold py-2 px-4 rounded animate__animated animate__fadeInUp animate__delay-2s">
+            <Link
+              to="about"
+              smooth={true}
+              duration={100}
+            >
+              {" "}
+              Get Started
+            </Link>
           </button>
         </div>
       </div>

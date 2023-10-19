@@ -7,6 +7,7 @@ import AOS from "aos"; // Import the AOS libra
 
 import Intro from "@/components/Intro";
 import AboutUs from "@/components/AboutUs";
+import Masses from "@/components/Masses";
 const Page = () => {
   useEffect(() => {
     AOS.init();
@@ -14,8 +15,8 @@ const Page = () => {
   return (
     <div>
       <Intro />
-
       <AboutUs />
+      <Masses />
     </div>
   );
 };

@@ -13,7 +13,7 @@ html {
   }
 }
 ul li {
-    @apply px-3 cursor-pointer hover:text-blue-400;
+    @apply px-3 ;
   }
 
 
@@ -83,6 +83,18 @@ ul li {
   height: 300px;
   /* Add other styles as needed */
 }
+.img2-bg {
+  background: linear-gradient(0deg, transparent, rgba(0, 0, 0, 0.6)),
+    url("/pic8.webp");
+  object-fit: contain;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: contain;
+  overflow: hidden;
+  background-position: center;
+  width: 100%;
+  height: max-content;
+}
 
 /* Media query for devices with a maximum width of 768 pixels (adjust as needed) */
 @media(max-width: 768px) and (min-width:500px) {
@@ -102,3 +114,9 @@ ul li {
   }
 }
 
+
+@media(max-width: 600px) and (min-width:280px) {
+  .clock{
+    display: none;
+  }
+}
