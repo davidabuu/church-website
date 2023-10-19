@@ -10,8 +10,8 @@ const DonateSection = () => {
         Donation for the Church
       </h2>
       <p className="md:text-3xl text-center text-2xl italic mb-8">
-        "Whoever is kind to the poor lends to the Lord, and he will reward them
-        for what they have done."
+        &quot;Whoever is kind to the poor lends to the Lord, and he will reward them
+        for what they have done. &quot;
       </p>
       <p className=" italic mb-12">Proverbs 19:17 (NIV)</p>
 
