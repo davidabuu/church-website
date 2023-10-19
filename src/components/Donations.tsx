@@ -3,6 +3,7 @@ import React from "react";
 const DonateSection = () => {
   return (
     <div
+      id="donations"
       data-aos="fade-in"
       className="flex flex-col pt-8 pb-8 items-center justify-center text-[#AA9055]  bg-gray-100"
     >
@@ -10,8 +11,8 @@ const DonateSection = () => {
         Donation for the Church
       </h2>
       <p className="md:text-3xl text-center text-2xl italic mb-8">
-        &quot;Whoever is kind to the poor lends to the Lord, and he will reward them
-        for what they have done. &quot;
+        &quot;Whoever is kind to the poor lends to the Lord, and he will reward
+        them for what they have done. &quot;
       </p>
       <p className=" italic mb-12">Proverbs 19:17 (NIV)</p>
 
