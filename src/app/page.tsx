@@ -8,6 +8,8 @@ import AOS from "aos"; // Import the AOS libra
 import Intro from "@/components/Intro";
 import AboutUs from "@/components/AboutUs";
 import Masses from "@/components/Masses";
+import Subscribe from "@/components/Subscribe";
+import Donations from "@/components/Donations";
 const Page = () => {
   useEffect(() => {
     AOS.init();
@@ -17,6 +19,8 @@ const Page = () => {
       <Intro />
       <AboutUs />
       <Masses />
+      <Donations />
+      <Subscribe />
     </div>
   );
 };

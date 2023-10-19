@@ -56,6 +56,9 @@ const Navbar = () => {
             <a href="#services">SERVICES</a>
           </li>
           <li>
+            <a href="#dontations">DONATIONS</a>
+          </li>
+          <li>
             <a href="#contacts">CONTACT</a>
           </li>
         </ul>
@@ -82,6 +85,9 @@ const Navbar = () => {
           >
             ABOUT
           </a>
+        </li>
+        <li>
+          <a href="#dontations">DONATIONS</a>
         </li>
         <li className="p-2 text-white border-b-[1px]">
           <a
