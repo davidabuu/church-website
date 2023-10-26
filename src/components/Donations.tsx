@@ -3,7 +3,7 @@ import React from "react";
 const DonateSection = () => {
   return (
     <div
-      id="donations"
+      id="dontations"
       data-aos="fade-in"
       className="flex flex-col pt-8 pb-8 items-center justify-center text-[#AA9055]  bg-gray-100"
     >

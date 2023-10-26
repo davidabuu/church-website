@@ -14,7 +14,7 @@ const ChurchSchedule = () => {
   return (
     <div className="max-w-2xl mx-auto p-8">
       <section className="border-white border-2 p-4 flex  md:justify-around flex-col md:flex-row md:items-center">
-        <h2 className="text-2xl font-semibold  mb-2">Sunday Mass</h2>
+        <h2 className="text-2xl font-semibold  mb-2">Sunday Masses</h2>
         <ul className="flex  md:flex-row  items-center">
           <ClockCircleOutlined />
           {schedule.sundayMasses.map((time, index) => (
@@ -24,11 +24,12 @@ const ChurchSchedule = () => {
       </section>
       <br></br>
       <section className="border-white border-2 p-4 flex  md:justify-around flex-col md:flex-row md:items-center">
-        <h2 className="text-2xl font-semibold  mb-2">WeekDay Mass</h2>
+        <h2 className="text-2xl font-semibold  mb-2">WeekDay Masses</h2>
         <ul className="flex  md:flex-row items-center">
           <ClockCircleOutlined />
 
-          <li>6am</li>
+          <li>Mon, Wed, Fri 6am</li>
+          <li>Tue, Thur, 6am</li>
         </ul>
       </section>
       <br></br>
@@ -38,7 +39,7 @@ const ChurchSchedule = () => {
         <ul className="flex  md:flex-row items-center">
           <ClockCircleOutlined />
 
-          <li>Friday 6am</li>
+          <li>Friday 5:30pm</li>
         </ul>
        </div>
        <div>
