@@ -123,3 +123,20 @@ ul li {
 .dontations{
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+
+
+.slide-in-right {
+  animation: slideInRight 1s ease forwards;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

@@ -67,7 +67,12 @@ const Navbar = () => {
             <a href="#services">TEAM</a>
             <ul className="hidden absolute right-[-70px] top-full w-44 bg-[#aa9055] bg-opacity-70 py-2 text-white group-hover:block space-y-2">
               <li>
-                <a href="#pastoral-team hover:text-[#AA9055]">Pastoral Team</a>
+                <a
+                  href="/pastoral-team"
+                  className=" hover:text-[#AA9055]"
+                >
+                  Pastoral Team
+                </a>
               </li>
               <li>
                 <a href="#pious-societies hover:text-[#AA9055]">
@@ -112,7 +117,7 @@ const Navbar = () => {
         </li>
         <div className={`${!subNav ? "hidden" : ""}`}>
           <li className="p-2 mx-0 text-white border-b-[1px]">
-            <a href="#pastoral-team">Pastoral Team</a>
+            <a href="/pastoral-team">Pastoral Team</a>
           </li>
           <li className="p-2 mx-0 text-white border-b-[1px]">
             <a
