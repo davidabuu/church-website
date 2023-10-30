@@ -106,6 +106,14 @@ const Navbar = () => {
             ABOUT
           </a>
         </li>
+        <li className="p-2 text-white border-b-[1px]">
+          <a
+            onClick={showNav}
+            href="/donations"
+          >
+            DONATIONS
+          </a>
+        </li>
         <li className="relative group p-2 text-white border-b-[1px]">
           <a
             href="#services"
