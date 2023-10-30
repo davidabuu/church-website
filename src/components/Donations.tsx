@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const DonateSection = () => {
@@ -17,7 +18,7 @@ const DonateSection = () => {
       <p className=" italic mb-12">Proverbs 19:17 (NIV)</p>
 
       <button className="text-[#AA9055] border-2 border-[#aa9055] text-2xl py-2 px-4 rounded hover:bg-[#8b7343] hover:text-white transition duration-300">
-        Donate Now!
+        <Link href="/donations">Donate Now!</Link>
       </button>
     </div>
   );

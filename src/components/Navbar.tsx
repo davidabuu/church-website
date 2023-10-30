@@ -82,7 +82,7 @@ const Navbar = () => {
             </ul>
           </li>
           <li>
-            <a href="#dontations hover:text-[#AA9055]">DONATIONS</a>
+            <a href="/donations">DONATIONS</a>
           </li>
           <li>
             <a href="#contacts hover:text-[#AA9055]">CONTACT</a>

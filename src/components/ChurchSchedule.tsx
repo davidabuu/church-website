@@ -34,44 +34,52 @@ const ChurchSchedule = () => {
       </section>
       <br></br>
       <section className="border-white border-2 p-4 flex  md:justify-around flex-col md:flex-row md:items-center">
-       <div>
-       <h2 className="text-2xl font-semibold  mb-2">Adoration</h2>
-        <ul className="flex  md:flex-row items-center">
-          <ClockCircleOutlined />
+        <div>
+          <h2 className="text-2xl font-semibold  mb-2">Adoration</h2>
+          <ul className="flex  md:flex-row items-center">
+            <ClockCircleOutlined />
 
-          <li>Friday 5:30pm</li>
-        </ul>
-       </div>
-       <div>
-       <h2 className="text-2xl font-semibold  mb-2">Confessions</h2>
-        <ul className="flex  md:flex-row items-center">
-          <ClockCircleOutlined />
+            <li>Friday 5:30pm</li>
+          </ul>
+        </div>
+        <div>
+          <h2 className="text-2xl font-semibold  mb-2">Confessions</h2>
+          <ul className="flex  md:flex-row items-center">
+            <ClockCircleOutlined />
 
-          <li>Satuday 7:30am</li>
-        </ul>
-       </div>
+            <li>Satuday 7:30am</li>
+          </ul>
+        </div>
       </section>
       <br></br>
       <section className="border-white border-2 p-4 flex  md:justify-around flex-col md:flex-row md:items-center">
-       <div>
-       <h2 className="text-2xl font-semibold  mb-2">Marriage Course</h2>
-        <ul className="flex  md:flex-row items-center">
-          <ClockCircleOutlined />
+        <div>
+          <h2 className="text-2xl font-semibold  mb-2">Marriage Course</h2>
+          <ul className="flex  md:flex-row items-center">
+            <ClockCircleOutlined />
 
-          <li>Thursday 7pm</li>
-          <li>Sunday 6pm</li>
-        </ul>
-       </div>
-       <div>
-       <h2 className="text-2xl font-semibold  mb-2">Catechism Classes</h2>
-        <ul className="flex  md:flex-row items-center">
-          <ClockCircleOutlined />
+            <li>Thursday 7pm</li>
+            <li>Sunday 6pm</li>
+          </ul>
+        </div>
+        <div>
+          <h2 className="text-2xl font-semibold  mb-2">Catechism Classes</h2>
+          <ul className="flex  md:flex-row items-center">
+            <ClockCircleOutlined />
 
-          <li>4pm</li>
-        </ul>
-       </div>
+            <li>4pm</li>
+          </ul>
+        </div>
       </section>
+      <br></br>
+      <section className="border-white border-2 p-4 flex  md:justify-around flex-col md:flex-row md:items-center">
+        <h2 className="text-2xl font-semibold  mb-2">Baptism</h2>
+        <ul className="flex  md:flex-row items-center">
+         
 
+          <li>Last Sat of the month</li>
+        </ul>
+      </section>
     </div>
   );
 };
