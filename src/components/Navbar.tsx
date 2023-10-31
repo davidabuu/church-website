@@ -75,6 +75,11 @@ const Navbar = () => {
                 </a>
               </li>
               <li>
+                <a href="/parish-pastoral-members">
+                Parish Pastorial Council
+                </a>
+              </li>
+              <li>
                 <a href="#pious-societies hover:text-[#AA9055]">
                   Pious Societies
                 </a>
