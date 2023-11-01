@@ -11,7 +11,9 @@
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
     "@coreui/react": "^5.0.0-alpha.0",
+    "@types/antd": "^1.0.0",
     "animate.css": "^4.1.1",
+    "antd": "^5.10.3",
     "aos": "^2.3.4",
     "next": "13.5.4",
     "react": "^18",

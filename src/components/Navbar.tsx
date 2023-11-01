@@ -75,14 +75,10 @@ const Navbar = () => {
                 </a>
               </li>
               <li>
-                <a href="/parish-pastoral-members">
-                Parish Pastorial Council
-                </a>
+                <a href="/parish-pastoral-members">Parish Pastorial Council</a>
               </li>
               <li>
-                <a href="#pious-societies hover:text-[#AA9055]">
-                  Pious Societies
-                </a>
+                <a href="/pious-societies">Pious Societies</a>
               </li>
             </ul>
           </li>
@@ -90,7 +86,7 @@ const Navbar = () => {
             <a href="/donations">DONATIONS</a>
           </li>
           <li>
-            <a href="#contacts hover:text-[#AA9055]">CONTACT</a>
+            <a href="#contacts">CONTACT</a>
           </li>
         </ul>
       </div>
@@ -133,8 +129,11 @@ const Navbar = () => {
             <a href="/pastoral-team">Pastoral Team</a>
           </li>
           <li className="p-2 mx-0 text-white border-b-[1px]">
+            <a href="/parish-pastoral-members">Parish Pastorial Council</a>
+          </li>
+          <li className="p-2 mx-0 text-white border-b-[1px]">
             <a
-              href="#pious-societies"
+              href="/pious-societies"
               className="flex items-center"
               onClick={togglePiousSocieties}
             >
