@@ -5,14 +5,14 @@ import PastoralTeamSection from "@/components/PastoralTeamSection";
 import Subscribe from "@/components/Subscribe";
 import Footer from "@/components/Footer";
 import { ArrowLeftOutlined } from "@ant-design/icons";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
+
 
 const Page: React.FC = () => {
   useEffect(() => {
     Aos.init();
   }, []);
-const router = useRouter();
+ 
   return (
     <div>
       <div

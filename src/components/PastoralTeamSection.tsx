@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image"; // Import the Image component
 
 interface PastoralTeamProps {
   url: string;
@@ -16,10 +17,13 @@ const PastoralTeamSection: React.FC<PastoralTeamProps> = ({
   return (
     <div className="card w-96 bg-base-100 shadow-xl">
       <figure className="px-10 pt-10">
-        <img
+        
+        <Image
           src={url}
           alt={title}
           className="rounded-xl"
+          width={300} // Adjust the width and height as needed
+          height={400}
         />
       </figure>
       <div className="card-body items-center text-center">
