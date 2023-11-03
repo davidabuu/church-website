@@ -49,7 +49,7 @@ const Navbar = () => {
     >
       <div className="flex items-center justify-between">
         <div className="text-lg lg:text-2xl font-bold">
-          Catholic Church of Annunciation Parish, Arab Road Kubwa Abuja
+         CCAP
         </div>
         {/* Hamburger Menu Icon */}
         <div className="md:hidden">
