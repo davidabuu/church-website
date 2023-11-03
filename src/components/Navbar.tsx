@@ -2,6 +2,9 @@ import {
   MenuOutlined,
   PlusSquareFilled,
   PlusCircleFilled,
+  DropboxOutlined,
+  DownOutlined,
+  CaretDownFilled,
 } from "@ant-design/icons";
 import React, { useState, useEffect } from "react";
 
@@ -9,20 +12,19 @@ const Navbar = () => {
   const [nav, setNav] = useState<boolean>(false);
   const [navBarBgColor, setNavBarBgColor] = useState<boolean>(false);
   const [subNav, setSubNav] = useState<boolean>(false);
-  const [piousSocietiesNav, setPiousSocietiesNav] = useState<boolean>(false);
+  const [showSubNav, setSubNavigation] = useState<boolean>(false);
 
   const showNav = () => {
     setNav(!nav);
   };
-
+  const navigation = () => {
+    setSubNavigation(!showSubNav);
+  };
   const otherNav = () => {
     setSubNav(!subNav);
   };
 
-  const togglePiousSocieties = () => {
-    setPiousSocietiesNav(!piousSocietiesNav);
-  };
-
+ 
   const changeBackground = () => {
     if (window.scrollY >= 200) {
       setNavBarBgColor(true);
@@ -34,6 +36,7 @@ const Navbar = () => {
   useEffect(() => {
     changeBackground();
     window.addEventListener("scroll", changeBackground);
+    
   }, []);
 
   return (
@@ -57,35 +60,69 @@ const Navbar = () => {
         </div>
         {/* Desktop Menu */}
         <ul className="hidden nav-list md:flex space-x-4">
-          <li className="hover:text-[#AA9055]">
+          <li
+            className={
+              navBarBgColor ? "hover:text-blue-200" : "hover:text-[#AA9055]"
+            }
+          >
             <a href="#home">HOME</a>
           </li>
-          <li className="hover:text-[#AA9055]">
+          <li
+            className={
+              navBarBgColor ? "hover:text-blue-200" : "hover:text-[#AA9055]"
+            }
+          >
             <a href="#about">ABOUT</a>
           </li>
-          <li className="relative group hover:text-[#AA9055]">
-            <a href="#services">TEAM</a>
-            <ul className="hidden absolute right-[-70px] top-full w-44 bg-[#aa9055] bg-opacity-70 py-2 text-white group-hover:block space-y-2">
+          <li className={showSubNav ? "relative group" : ""}>
+            <div className="flex items-center">
+              <a href="#services">TEAM</a>
+              <CaretDownFilled onClick={navigation} />
+            </div>
+            <ul
+              className={`hidden absolute right-[-70px] top-full w-44 bg-[#aa9055] bg-opacity-70 py-2 text-white ${
+                navBarBgColor ? " group-hover:bg-[#1e4165b9]" : ""
+              } ${showSubNav ? "block group-hover:block" : ""}`}
+            >
               <li>
                 <a
                   href="/pastoral-team"
-                  className=" hover:text-[#AA9055]"
+                  className="hover:text-blue-700"
                 >
                   Pastoral Team
                 </a>
               </li>
               <li>
-                <a href="/parish-pastoral-members">Parish Pastorial Council</a>
+                <a
+                  href="/parish-pastoral-members"
+                  className="hover:text-blue-700"
+                >
+                  Parish Pastoral Council
+                </a>
               </li>
               <li>
-                <a href="/pious-societies">Pious Societies</a>
+                <a
+                  href="/pious-societies"
+                  className="hover:text-blue-700"
+                >
+                  Pious Societies
+                </a>
               </li>
             </ul>
           </li>
-          <li>
+
+          <li
+            className={
+              navBarBgColor ? "hover:text-blue-200" : "hover:text-[#AA9055]"
+            }
+          >
             <a href="/donations">DONATIONS</a>
           </li>
-          <li>
+          <li
+            className={
+              navBarBgColor ? "hover:text-blue-200" : "hover:text-[#AA9055]"
+            }
+          >
             <a href="#contacts">CONTACT</a>
           </li>
         </ul>
@@ -103,6 +140,7 @@ const Navbar = () => {
           <a
             onClick={showNav}
             href="#about"
+            className="hover:text-blue-700"
           >
             ABOUT
           </a>
@@ -111,6 +149,7 @@ const Navbar = () => {
           <a
             onClick={showNav}
             href="/donations"
+            className="hover:text-blue-700"
           >
             DONATIONS
           </a>
@@ -126,34 +165,37 @@ const Navbar = () => {
         </li>
         <div className={`${!subNav ? "hidden" : ""}`}>
           <li className="p-2 mx-0 text-white border-b-[1px]">
-            <a href="/pastoral-team">Pastoral Team</a>
+            <a
+              href="/pastoral-team"
+              className="hover:text-blue-700"
+            >
+              Pastoral Team
+            </a>
           </li>
           <li className="p-2 mx-0 text-white border-b-[1px]">
-            <a href="/parish-pastoral-members">Parish Pastorial Council</a>
+            <a
+              href="/parish-pastoral-members"
+              className="hover:text-blue-700"
+              onClick={otherNav}
+            >
+              Parish Pastorial Council
+            </a>
           </li>
           <li className="p-2 mx-0 text-white border-b-[1px]">
             <a
               href="/pious-societies"
-              className="flex items-center"
-              onClick={togglePiousSocieties}
+              className="flex items-center   hover:text-blue-700"
+              onClick={otherNav}
             >
-              Pious Societies <PlusCircleFilled className="mx-2" />
+              Pious Societies
             </a>
           </li>
-          <div className={`${!piousSocietiesNav ? "hidden" : ""}`}>
-            <li className="p-2 mx-0 text-white border-b-[1px]">
-              <a href="#pious-societies-detail-1">Society 1</a>
-            </li>
-            <li className="p-2 mx-0 text-white border-b-[1px]">
-              <a href="#pious-societies-detail-2">Society 2</a>
-            </li>
-            {/* Add more Pious Societies as needed */}
-          </div>
         </div>
         <li className="p-2 text-white border-b-[1px]">
           <a
             onClick={showNav}
             href="#contacts"
+            className="hover:text-blue-700"
           >
             CONTACT
           </a>

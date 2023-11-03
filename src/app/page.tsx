@@ -19,6 +19,8 @@ const Page = () => {
     <div>
       <Intro />
       <AboutUs />
+      <br></br>
+
       <Masses />
       <Donations />
       <Subscribe />

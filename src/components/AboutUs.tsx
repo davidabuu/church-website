@@ -1,4 +1,3 @@
-import Image from "next/image";
 import React from "react";
 import Slide from "./Slide";
 
@@ -7,7 +6,7 @@ const About = () => {
     <div
       id="about"
       data-aos="fade-right"
-      className="mt-4 mb-4 justify-evenly items-center flex flex-col sm:flex-row"
+      className="mt-10 mb-10 justify-evenly items-center flex flex-col sm:flex-row"
     >
       <div className="">
         <h2 className="text-3xl  text-[#AA9055] font-bold mb-4 ">

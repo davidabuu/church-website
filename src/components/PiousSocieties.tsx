@@ -90,11 +90,13 @@ const PiousSocieties = () => {
         title="Have a view of our Pious Societies"
         backgroundImageSrc="/pic13.png"
       />
-      <Table
-        dataSource={societyMeetings}
-        columns={columns}
-        pagination={{ pageSize: 10 }} // You can adjust the page size as needed
-      />
+      <div className="centeredTable">
+        <Table
+          dataSource={societyMeetings}
+          columns={columns}
+          pagination={{ pageSize: 10 }} // You can adjust the page size as needed
+        />
+      </div>
     </div>
   );
 };
