@@ -20,7 +20,7 @@ const Page = () => {
       <Intro />
       <AboutUs />
       <br></br>
-
+      <Masses />
       {/* <Masses />
       <Donations />
       <Subscribe />
