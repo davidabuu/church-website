@@ -18,10 +18,10 @@ const Page = () => {
   return (
     <div>
       <Intro />
-      {/* <AboutUs />
+      <AboutUs />
       <br></br>
 
-      <Masses />
+      {/* <Masses />
       <Donations />
       <Subscribe />
       <Footer /> */}
