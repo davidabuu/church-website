@@ -18,13 +18,13 @@ const Page = () => {
   return (
     <div>
       <Intro />
-      <AboutUs />
+      {/* <AboutUs />
       <br></br>
 
       <Masses />
       <Donations />
       <Subscribe />
-      <Footer />
+      <Footer /> */}
     </div>
   );
 };
