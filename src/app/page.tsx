@@ -24,7 +24,7 @@ const Page = () => {
       
       <Donations />
       <Subscribe />
-      {/* <Footer />  */}
+      <Footer /> 
     </div>
   );
 };

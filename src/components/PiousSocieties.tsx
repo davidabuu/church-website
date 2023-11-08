@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import LandingDiv from "./LandingDiv";
-import { Table } from "antd";
+import { Table, Spin, Input } from "antd";
 
 const PiousSocieties = () => {
+  const [data, setData] = useState<SocietyMeetings[]>([]);
+  const [searchText, setSearchText] = useState<string>("");
+  const [filteredData, setFilteredData] = useState<SocietyMeetings[]>([]);
+
   interface SocietyMeetings {
     name: string;
     meeting: string;
@@ -84,6 +88,24 @@ const PiousSocieties = () => {
     },
   ];
 
+  useEffect(() => {
+    // Simulate a 2-second loading delay
+
+    setData(societyMeetings);
+  }, []);
+
+  useEffect(() => {
+    // Filter data based on search text
+    if (searchText) {
+      const filtered = data.filter((item: any) =>
+        item.name.toLowerCase().includes(searchText.toLowerCase())
+      );
+      setFilteredData(filtered);
+    } else {
+      setFilteredData(data);
+    }
+  }, [searchText, data]);
+
   return (
     <div>
       <LandingDiv
@@ -91,11 +113,21 @@ const PiousSocieties = () => {
         backgroundImageSrc="/pic13.png"
       />
       <div className="centeredTable">
-        <Table
-          dataSource={societyMeetings}
-          columns={columns}
-          pagination={{ pageSize: 10 }} // You can adjust the page size as needed
-        />
+        <div>
+          <br></br>
+          <Input
+            className="mx-4"
+            placeholder="Search Societies"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+            style={{ width: "100%", maxWidth: "300px", marginBottom: "10px" }}
+          />
+          <Table
+            dataSource={filteredData}
+            columns={columns}
+            pagination={{ pageSize: 10 }}
+          />
+        </div>
       </div>
     </div>
   );
