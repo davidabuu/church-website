@@ -18,7 +18,7 @@ const Intro: React.FC = () => {
       <div className="relative z-10 flex items-center justify-center min-h-screen">
         <div className="text-white text-center">
           <h1 className="text-2xl lg:text-4xl font-bold mb-4 animate__animated animate__fadeInUp">
-            Welcome to Annunciation Parish
+            Welcome to Catholic Church Annunciation Parish
           </h1>
           <p className="text-sm lg:text-lg animate__animated animate__fadeInUp animate__delay-1s">
             Join our close-knit community for worship, fellowship, and service.

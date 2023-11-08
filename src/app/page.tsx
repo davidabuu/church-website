@@ -21,10 +21,10 @@ const Page = () => {
       <AboutUs />
       <br></br>
       <Masses />
-      {/* <Masses />
+      
       <Donations />
       <Subscribe />
-      <Footer /> */}
+      {/* <Footer />  */}
     </div>
   );
 };
