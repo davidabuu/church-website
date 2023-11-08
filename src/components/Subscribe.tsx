@@ -5,7 +5,7 @@ const Subscribe = () => {
     <form className="flex flex-col lg:flex-row items-center  justify-around bg-[#1e3a76] p-20 text-white">
       <h2 className="text-3xl mb-4">Be Inspired!</h2>
       <input
-        className="border-2 placeholder:text-white placeholder:font-bold p-2 mb-4 bg-[#1e3a76] outline-none border-[#aa9055] w-[110%]  md:w-72 lg:w-1/2 xl:w-1/3"
+        className="border-2 placeholder:text-white placeholder:font-bold p-2 mb-4 bg-[#1e3a76] outline-none border-[#aa9055] w-[115%]  md:w-72 lg:w-1/2 xl:w-1/3"
         type="email"
         required
         placeholder="Enter your email address*"
