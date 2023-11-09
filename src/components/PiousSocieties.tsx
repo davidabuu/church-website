@@ -92,7 +92,7 @@ const PiousSocieties = () => {
     // Simulate a 2-second loading delay
 
     setData(societyMeetings);
-  }, []);
+  }, [societyMeetings]);
 
   useEffect(() => {
     // Filter data based on search text
