@@ -18,7 +18,7 @@ const EventCard: React.FC<EventCardProps> = ({
 }) => {
   return (
     <div className="flex items-center mt-4 justify-center">
-      <div className="flex items-center p-8 md:p-9 mx-6 flex-col justify-between bg-[#aa9055]">
+      <div className="flex items-center p-8 md:p-9 mx-2 md:mx-6 flex-col justify-between bg-[#aa9055]">
         <p>{day}</p>
         <p>{month}</p>
       </div>

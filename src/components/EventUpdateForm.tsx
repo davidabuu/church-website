@@ -1,67 +1,115 @@
-// components/EventUpdateForm.tsx
+'use client'
+import React, { useState } from "react";
 
-import React, { useState } from 'react';
-// To this
-interface ChurchEvent {
-    name: string;
-    date: string;
-    time: string;
-  }
-interface EventUpdateFormProps {
-    onEventUpdate: (event: ChurchEvent) => void;
-  }
+const EventForm: React.FC = () => {
+  const [formData, setFormData] = useState({
+    day: "",
+    month: "",
+    eventName: "",
+    eventTime: "",
+    eventLocation: "",
+  });
 
-const EventUpdateForm: React.FC<EventUpdateFormProps> = ({ onEventUpdate }) => {
-  const [name, setName] = useState('');
-  const [date, setDate] = useState('');
-  const [time, setTime] = useState('');
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-  const handleSubmit = () => {
-    const event = { name, date, time };
-    onEventUpdate(event);
-    setName('');
-    setDate('');
-    setTime('');
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Add your form submission logic here, using formData
+    console.log("Form submitted with data:", formData);
   };
 
   return (
-    <div className="bg-white p-4 rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-4">Update Upcoming Event</h2>
-      <div className="mb-4">
-        <input
-          type="text"
-          placeholder="Event Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="p-2 border rounded-md w-full"
-        />
-      </div>
-      <div className="mb-4">
-        <input
-          type="text"
-          placeholder="Date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-          className="p-2 border rounded-md w-full"
-        />
-      </div>
-      <div className="mb-4">
-        <input
-          type="text"
-          placeholder="Time"
-          value={time}
-          onChange={(e) => setTime(e.target.value)}
-          className="p-2 border rounded-md w-full"
-        />
-      </div>
-      <button
-        onClick={handleSubmit}
-        className="bg-blue-500 text-white p-2 rounded-md cursor-pointer"
-      >
-        Update Event
-      </button>
+    <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-md shadow-md">
+      <h2 className="text-2xl font-semibold mb-6">Event Details</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="mb-4">
+          <label htmlFor="day" className="block text-sm font-medium text-gray-600">
+            Day
+          </label>
+          <input
+            type="text"
+            id="day"
+            name="day"
+            className="mt-1 p-2 w-full border rounded-md"
+            placeholder="Event Day"
+            value={formData.day}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="month" className="block text-sm font-medium text-gray-600">
+            Month
+          </label>
+          <input
+            type="text"
+            id="month"
+            name="month"
+            className="mt-1 p-2 w-full border rounded-md"
+            placeholder="Event Month"
+            value={formData.month}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="eventName" className="block text-sm font-medium text-gray-600">
+            Event Name
+          </label>
+          <input
+            type="text"
+            id="eventName"
+            name="eventName"
+            className="mt-1 p-2 w-full border rounded-md"
+            placeholder="Event Name"
+            value={formData.eventName}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="eventTime" className="block text-sm font-medium text-gray-600">
+            Event Time
+          </label>
+          <input
+            type="time"
+            id="eventTime"
+            name="eventTime"
+            className="mt-1 p-2 w-full border rounded-md"
+            placeholder="Event Time"
+            value={formData.eventTime}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="eventLocation" className="block text-sm font-medium text-gray-600">
+            Event Location
+          </label>
+          <input
+            type="text"
+            id="eventLocation"
+            name="eventLocation"
+            className="mt-1 p-2 w-full border rounded-md"
+            placeholder="Event Location"
+            value={formData.eventLocation}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="mt-6">
+          <button
+            type="submit"
+            className="bg-blue-500 text-white p-2 rounded-md cursor-pointer"
+          >
+            Add New Event
+          </button>
+        </div>
+      </form>
     </div>
   );
 };
 
-export default EventUpdateForm;
+export default EventForm;

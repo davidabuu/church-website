@@ -18,9 +18,11 @@ const Page = () => {
       <AboutUs />
       <br></br>
       <Masses />
-
+      <br></br>
       <Donations />
+      <br></br>
 <Events/>
+
       <Footer />
     </div>
   );
