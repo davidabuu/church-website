@@ -95,6 +95,24 @@ ul li {
   width: 100%;
   height: max-content;
 }
+.img3-bg {
+  background: linear-gradient(0deg, transparent, rgba(0, 0, 0, 0.6)),
+    url("/pic14.jpg");
+  object-fit: contain;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: contain;
+  overflow: hidden;
+  background-position: center;
+  width: 100%;
+  height: max-content;
+}
+.event2{
+  display: none;
+}
+
+
+
 
 /* Media query for devices with a maximum width of 768 pixels (adjust as needed) */
 @media(max-width: 768px) and (min-width:500px) {

@@ -2,17 +2,16 @@
 import React, { useEffect } from "react";
 import Aos from "aos";
 import PastoralTeamSection from "@/components/PastoralTeamSection";
-import Subscribe from "@/components/Subscribe";
+
 import Footer from "@/components/Footer";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import Link from "next/link";
-
 
 const Page: React.FC = () => {
   useEffect(() => {
     Aos.init();
   }, []);
- 
+
   return (
     <div>
       <div
@@ -36,12 +35,9 @@ const Page: React.FC = () => {
           </p>
         </div>
       </div>
-     <Link href='/'>
-     <ArrowLeftOutlined
-          className="absolute top-4 right-16 text-white hover:text-[#aa9055] cursor-pointer"
-         
-        />
-     </Link>
+      <Link href="/">
+        <ArrowLeftOutlined className="absolute top-4 right-16 text-white hover:text-[#aa9055] cursor-pointer" />
+      </Link>
       <div className="flex flex-col mx-4 md:mx-0 items-center justify-around md:flex-row">
         <PastoralTeamSection
           url="/pic9.jpg"
@@ -64,7 +60,7 @@ const Page: React.FC = () => {
           name="Edache Gabriel"
         />
       </div>
-      <Subscribe />
+
       <Footer />
     </div>
   );

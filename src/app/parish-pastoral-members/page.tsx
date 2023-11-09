@@ -1,6 +1,6 @@
 import Footer from "@/components/Footer";
 import LandingDiv from "@/components/LandingDiv";
-import Subscribe from "@/components/Subscribe";
+
 import { Metadata } from "next";
 import React from "react";
 export const metadata: Metadata = {
@@ -56,7 +56,7 @@ const Page = () => {
         </div>
       </div>
       <br></br>
-      <Subscribe />
+      
 
       <Footer />
     </div>

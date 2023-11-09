@@ -121,6 +121,13 @@ const Navbar = () => {
               navBarBgColor ? "hover:text-blue-200" : "hover:text-[#AA9055]"
             }
           >
+            <a href="#events">EVENTS</a>
+          </li>
+          <li
+            className={
+              navBarBgColor ? "hover:text-blue-200" : "hover:text-[#AA9055]"
+            }
+          >
             <a href="#contacts">CONTACT</a>
           </li>
         </ul>
@@ -150,6 +157,15 @@ const Navbar = () => {
             className="hover:text-blue-700"
           >
             DONATIONS
+          </a>
+        </li>
+        <li className="p-2 text-white border-b-[1px]">
+          <a
+            onClick={showNav}
+            href="#events"
+            className="hover:text-blue-700"
+          >
+            EVENTS
           </a>
         </li>
         <li className="relative group p-2 text-white border-b-[1px]">
