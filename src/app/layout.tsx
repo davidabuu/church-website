@@ -1,13 +1,13 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter, Montserrat } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import StyledComponentsRegistry from "../../lib/AntRegistry";
 const open = Montserrat({ subsets: ["latin"] });
 export const metadata: Metadata = {
-  title: "Church of Annunctiation Parish",
-  description:
-    "",
+  title: "CCAP",
+  description: "Explore the vibrant community of Catholic Church Annunciation Parish on Arab Road, Kubwa. Join us for events, celebrations, and spiritual gatherings as we come together in faith and fellowship.",
 };
+
 
 export default function RootLayout({
   children,
