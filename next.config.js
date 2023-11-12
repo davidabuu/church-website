@@ -1,4 +1,5 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {}
-
-module.exports = nextConfig
+module.exports = {
+    env: {
+      BASE_URL: "https://localhost:7007/api/",
+    },
+  };

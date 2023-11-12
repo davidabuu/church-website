@@ -7,7 +7,7 @@ const DonateSection = () => {
     <div
       id="dontations"
       data-aos="fade-in"
-      className="flex flex-col pt-8 pb-8 items-center justify-center text-[#AA9055]  bg-gray-100"
+      className="flex flex-col py-14 items-center justify-center text-[#AA9055]  bg-gray-100"
     >
       <h2 className="text-center text-2xl md:text-4xl font-bold mb-4 text-[#AA9055]">
         Donation for the Church

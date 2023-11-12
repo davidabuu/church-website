@@ -1,7 +1,12 @@
-'use client'
+"use client";
+import { Events } from "@/app/utils";
+import { Button } from "antd";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const EventForm: React.FC = () => {
+  
   const [formData, setFormData] = useState({
     day: "",
     month: "",
@@ -9,15 +14,38 @@ const EventForm: React.FC = () => {
     eventTime: "",
     eventLocation: "",
   });
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Add your form submission logic here, using formData
-    console.log("Form submitted with data:", formData);
+    try {
+      setLoading(true);
+
+      // Get the token from localStorage
+      const token = localStorage.getItem("token");
+
+      const res = await axios.post(
+        `${process.env.BASE_URL}${Events.addEvent}` || "",
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log(res);
+
+      if (res.status === 200 && token) {
+        setLoading(false);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -25,7 +53,10 @@ const EventForm: React.FC = () => {
       <h2 className="text-2xl font-semibold mb-6">Event Details</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label htmlFor="day" className="block text-sm font-medium text-gray-600">
+          <label
+            htmlFor="day"
+            className="block text-sm font-medium text-gray-600"
+          >
             Day
           </label>
           <input
@@ -33,14 +64,17 @@ const EventForm: React.FC = () => {
             id="day"
             name="day"
             className="mt-1 p-2 w-full border rounded-md"
-            placeholder="Event Day"
+            placeholder="Event Day e.g 12th or 1st"
             value={formData.day}
             onChange={handleChange}
             required
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="month" className="block text-sm font-medium text-gray-600">
+          <label
+            htmlFor="month"
+            className="block text-sm font-medium text-gray-600"
+          >
             Month
           </label>
           <input
@@ -48,14 +82,17 @@ const EventForm: React.FC = () => {
             id="month"
             name="month"
             className="mt-1 p-2 w-full border rounded-md"
-            placeholder="Event Month"
+            placeholder="Event Month e.g December"
             value={formData.month}
             onChange={handleChange}
             required
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="eventName" className="block text-sm font-medium text-gray-600">
+          <label
+            htmlFor="eventName"
+            className="block text-sm font-medium text-gray-600"
+          >
             Event Name
           </label>
           <input
@@ -70,22 +107,28 @@ const EventForm: React.FC = () => {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="eventTime" className="block text-sm font-medium text-gray-600">
+          <label
+            htmlFor="eventTime"
+            className="block text-sm font-medium text-gray-600"
+          >
             Event Time
           </label>
           <input
-            type="time"
+            type="text"
             id="eventTime"
             name="eventTime"
             className="mt-1 p-2 w-full border rounded-md"
-            placeholder="Event Time"
+            placeholder="Event Time e.g 12am or 12pm"
             value={formData.eventTime}
             onChange={handleChange}
             required
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="eventLocation" className="block text-sm font-medium text-gray-600">
+          <label
+            htmlFor="eventLocation"
+            className="block text-sm font-medium text-gray-600"
+          >
             Event Location
           </label>
           <input
@@ -93,19 +136,21 @@ const EventForm: React.FC = () => {
             id="eventLocation"
             name="eventLocation"
             className="mt-1 p-2 w-full border rounded-md"
-            placeholder="Event Location"
+            placeholder="Event Location e.g Church"
             value={formData.eventLocation}
             onChange={handleChange}
             required
           />
         </div>
         <div className="mt-6">
-          <button
-            type="submit"
+          <Button
+            htmlType="submit"
+            type="primary"
+            loading={loading}
             className="bg-blue-500 text-white p-2 rounded-md cursor-pointer"
           >
             Add New Event
-          </button>
+          </Button>
         </div>
       </form>
     </div>
