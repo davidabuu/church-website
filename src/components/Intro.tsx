@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "./Navbar";
-import { Link } from "react-scroll";
+import Link from "next/link";
 
 const Intro: React.FC = () => {
   return (
@@ -26,14 +26,7 @@ const Intro: React.FC = () => {
           </p>
 
           <button className="mt-4 bg-[#AA9055] text-white font-bold py-2 px-4 rounded animate__animated animate__fadeInUp animate__delay-2s">
-            <Link
-              to="about"
-              smooth={true}
-              duration={100}
-            >
-              {" "}
-              Get Started
-            </Link>
+            <Link href="/member">Become A Member</Link>
           </button>
         </div>
       </div>

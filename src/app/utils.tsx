@@ -1,5 +1,3 @@
-const apiUrl: string = process.env.BASE_URL || "";
-
 //API EndPoints
 
 export const Login = {
@@ -10,4 +8,11 @@ export const Events = {
     getAllEvents:'Event/GetAllEvents',
     deleteSingleEvent:`Event/DeleteAnEvent`,
     addEvent:'Event/AddNewEvent'
+}
+
+
+export const MembersRegsitration = {
+    getAllMembers:'Member/GetAllMembers',
+    deleteSingleMember:'Member/DeleteAMember',
+    addNewMember:'Member/AddNewMember'
 }
