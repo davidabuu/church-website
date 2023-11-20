@@ -35,7 +35,7 @@ const EventList: React.FC = () => {
     };
 
     fetchEvents();
-  }, []);
+  }, [router]);
 
   const handleDelete = async (eventId: number) => {
     try {

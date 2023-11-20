@@ -1,40 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { Table, Button, Popconfirm, message, Spin } from "antd";
 import axios from "axios";
-import { Events } from "@/app/utils";
+import { Events, MembersRegsitration } from "@/app/utils";
 import { useRouter } from "next/navigation";
 
 const MemberList: React.FC = () => {
-  const [events, setEvents] = useState([]);
+  const [members, setMembers] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const router = useRouter();
 
   useEffect(() => {
-    const fetchEvents = async () => {
+    const fetchMembers = async () => {
       try {
-        if (!localStorage.getItem("token")) {
-          router.push("/");
-        } else {
-          setLoading(true);
+        const res = await axios.get(
+          `${process.env.BASE_URL}${MembersRegsitration.getAllMembers}`
+        );
 
-          // Get the token from localStorage
-          const token = localStorage.getItem("token");
-
-          // Fetch events from the server with the token in the headers
-          const res = await axios.get(
-            `${process.env.BASE_URL}${Events.getAllEvents}`
-          );
-
-          setEvents(res.data);
-          setLoading(false);
-        }
+        setMembers(res.data);
+        console.log(res);
+        setLoading(false);
       } catch (error) {
         console.error(error);
         setLoading(false);
       }
     };
 
-    fetchEvents();
+    fetchMembers();
   }, []);
 
   const handleDelete = async (eventId: number) => {
@@ -46,7 +37,7 @@ const MemberList: React.FC = () => {
 
       // Send a request to delete the event
       await axios.delete(
-        `${process.env.BASE_URL}${Events.deleteSingleEvent}?id=${eventId}`,
+        `${process.env.BASE_URL}${MembersRegsitration.deleteSingleMember}?id=${eventId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -59,9 +50,9 @@ const MemberList: React.FC = () => {
       // Display success message
       message.success("Event deleted successfully");
 
-      // Update the events list
-      setEvents((prevEvents) =>
-        prevEvents.filter((event: any) => event.id !== eventId)
+      // Update the Members list
+      setMembers((prevMembers) =>
+        prevMembers.filter((event: any) => event.id !== eventId)
       );
 
       setLoading(false);
@@ -75,68 +66,78 @@ const MemberList: React.FC = () => {
 
   const columns = [
     {
-      title: "Event Name",
-      dataIndex: "eventName",
-      key: "eventName",
+      title: "First Name",
+      dataIndex: "firstName",
+      key: "firstName",
       render: (text: string, record: any) => <p>{text}</p>,
     },
     {
-      title: "Day",
-      dataIndex: "day",
-      key: "day",
+      title: "Last Name",
+      dataIndex: "lastName",
+      key: "lastName",
       render: (text: string, record: any) => (
         <>
-          <p>{record.day},</p>
+          <p>{record.lastName},</p>
         </>
       ),
     },
     {
-      title: "Month",
-      dataIndex: "month",
-      key: "month",
+      title: "Phone Number",
+      dataIndex: "phoneNumber",
+      key: "phoneNumber",
       render: (text: string, record: any) => (
         <>
-          <p>{record.month}</p>
+          <p>{record.phoneNumber},</p>
         </>
       ),
     },
     {
-      title: "Time",
-      dataIndex: "eventTime",
-      key: "eventTime",
+      title: "Email",
+      dataIndex: "email",
+      key: "email",
       render: (text: string, record: any) => (
         <>
-          <p>{record.eventTime}</p>
+          <p>{record.email}</p>
         </>
       ),
     },
     {
-      title: "Location",
-      dataIndex: "eventLocation",
-      key: "eventLocation",
+      title: "Oraganization",
+      dataIndex: "organization",
+      key: "organization",
+      render: (text: string, record: any) => (
+        <>
+          <p>{record.organization}</p>
+        </>
+      ),
     },
     {
-      title: "Action",
-      key: "action",
-      render: (text: string, record: any) => (
-        <Popconfirm
-          title="Are you sure to delete this event?"
-          onConfirm={() => handleDelete(record.id)}
-          okText="Yes"
-          cancelText="No"
-          okButtonProps={{ className: "bg-red-500" }}
-        >
-          <div className="">
-            <Button className=" bg-red-500">Delete</Button>
-          </div>
-        </Popconfirm>
+      title: "Age",
+      dataIndex: "age",
+      key: "age",
+    },
+    {
+      title: "Sex",
+      dataIndex: "sex",
+      key: "sex",
+    },
+
+    {
+      title: "Paid",
+      dataIndex: "paid",
+      key: "paid",
+      render: (text: boolean, record: any) => (
+        <>
+        {console.log(record.paid)}
+          <p className=" text-green-400">{record.paid.toString()}</p>
+        </>
       ),
     },
   ];
 
   return (
     <div className=" mt-8 p-6 bg-white rounded-md shadow-md">
-      <h2 className="text-2xl font-semibold mb-6">Event List</h2>
+      <h2 className="text-2xl font-semibold mb-6">Members List</h2>
       {loading ? (
         <div className="flex flex-col items-center justify-center">
           <Spin />
@@ -147,7 +148,7 @@ const MemberList: React.FC = () => {
           style={{
             fontSize: "20px",
           }}
-          dataSource={events}
+          dataSource={members}
           columns={columns}
           rowKey="id"
         />

@@ -14,5 +14,6 @@ export const Events = {
 export const MembersRegsitration = {
     getAllMembers:'Member/GetAllMembers',
     deleteSingleMember:'Member/DeleteAMember',
-    addNewMember:'Member/AddNewMember'
+    addNewMember:'Member/AddNewMember',
+    verify:'Member/Verify'
 }
