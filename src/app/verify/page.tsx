@@ -1,12 +1,13 @@
 "use client";
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import VerifyingTransaction from "@/components/Verify";
 import axios from "axios";
 import { MembersRegsitration } from "../utils";
 import SuccessMessage from "@/components/Success";
 const Page = () => {
+  const router  = useRouter()
   const searchParams = useSearchParams();
   const [param, setParam] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
@@ -23,10 +24,15 @@ const Page = () => {
     }
   };
   useEffect(() => {
-    const url = `${searchParams}`;
+    const url = `${searchParams}`
     //setParam(url)
     setParam(url.slice(7, 16));
-
+    if (url) {
+      setParam(url.slice(7, 16));
+    } else {
+      // Redirect to the homepage if the required parameter is not present
+      router.push("/");
+    }
     // You can now use the current URL
     // ...
   }, [searchParams]);

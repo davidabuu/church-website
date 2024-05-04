@@ -28,7 +28,7 @@ const ChurchSchedule = () => {
         <ul className="flex  md:flex-row items-center">
           <ClockCircleOutlined />
 
-          <li>Mon, Wed, Fri 6am</li>
+          <li>Mon, Wed, Fri 6pm</li>
           <li>Tue, Thur, 6am</li>
         </ul>
       </section>
