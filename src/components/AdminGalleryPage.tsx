@@ -1,8 +1,19 @@
 import React from "react";
-import { Upload, Button, message, Table, Image } from "antd";
-import { UploadOutlined } from "@ant-design/icons";
+import {
+  Upload,
+  Button,
+  message,
+  Table,
+  Image,
+  Row,
+  Col,
+  Typography,
+} from "antd";
+import { UploadOutlined, LoadingOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { ImageData } from "@/app/utils";
+
+const { Title } = Typography;
 
 interface ImageData {
   filename: string;
@@ -11,12 +22,18 @@ interface ImageData {
 
 const AdminGalleryPage: React.FC = () => {
   const [images, setImages] = React.useState<ImageData[]>([]);
+  const [uploadLoading, setUploadLoading] = React.useState<boolean>(false);
+  const [deleting, setDeleting] = React.useState<{ [key: string]: boolean }>(
+    {}
+  );
 
   // Fetch the list of images when the component mounts
   React.useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await axios.get(`${process.env.BASE_URL}/api/images`);
+        const response = await axios.get(
+          `${process.env.BASE_URL}${ImageData.getAllImages}`
+        );
         if (response.status === 200) {
           setImages(response.data);
         } else {
@@ -33,7 +50,9 @@ const AdminGalleryPage: React.FC = () => {
   // Handle image upload
   const handleUpload = async (options: any) => {
     const { file, onSuccess, onError } = options;
-    const uploadEndpoint = `${process.env.BASE_URL}/api/images/upload`;
+    const uploadEndpoint = `${process.env.BASE_URL}${ImageData.addImage}`;
+
+    setUploadLoading(true);
 
     const formData = new FormData();
     formData.append("file", file);
@@ -42,12 +61,8 @@ const AdminGalleryPage: React.FC = () => {
       const response = await axios.post(uploadEndpoint, formData);
       if (response.status === 200) {
         message.success("Image uploaded successfully!");
-
+        window.location.reload();
         // Refresh the image list
-        setImages((prevImages) => [
-          ...prevImages,
-          { filename: response.data, url: `${process.env.BASE_URL}/api/images/${response.data}` },
-        ]);
 
         // Call onSuccess to complete the upload process
         onSuccess(null, file);
@@ -58,21 +73,31 @@ const AdminGalleryPage: React.FC = () => {
     } catch (error) {
       message.error("Error uploading image.");
       onError(error);
+    } finally {
+      setUploadLoading(false);
     }
   };
 
   // Handle image deletion
   const handleDelete = async (filename: string) => {
+    setDeleting((prevState) => ({ ...prevState, [filename]: true }));
+
     try {
-      const response = await axios.delete(`${process.env.BASE_URL}/api/images/${filename}`);
+      const response = await axios.delete(
+        `${process.env.BASE_URL}${ImageData.deleteImage}/${filename}`
+      );
       if (response.status === 200) {
-        setImages((prevImages) => prevImages.filter((image) => image.filename !== filename));
+        setImages((prevImages) =>
+          prevImages.filter((image) => image.filename !== filename)
+        );
         message.success("Image deleted successfully!");
       } else {
         message.error("Failed to delete image.");
       }
     } catch (error) {
       message.error("Error deleting image.");
+    } finally {
+      setDeleting((prevState) => ({ ...prevState, [filename]: false }));
     }
   };
 
@@ -84,9 +109,9 @@ const AdminGalleryPage: React.FC = () => {
       key: "url",
       render: (url: string) => (
         <Image
-          src={url}
-          width={100}
-          height={100}
+          src={`https://localhost:7007${url}`}
+          width={50}
+          height={50}
           alt="Image"
         />
       ),
@@ -100,7 +125,12 @@ const AdminGalleryPage: React.FC = () => {
       title: "Actions",
       key: "actions",
       render: (text: any, record: ImageData) => (
-        <Button onClick={() => handleDelete(record.filename)} type="primary" danger>
+        <Button
+          onClick={() => handleDelete(record.filename)}
+          type="primary"
+          danger
+          loading={deleting[record.filename]} // Show loading state
+        >
           Delete
         </Button>
       ),
@@ -109,16 +139,25 @@ const AdminGalleryPage: React.FC = () => {
 
   return (
     <div style={{ padding: "20px" }}>
-      <h2>Admin: Upload Image</h2>
+      <Title level={2}>Image Upload</Title>
       <Upload
         customRequest={handleUpload}
         showUploadList={false}
       >
-        <Button icon={<UploadOutlined />}>Upload Image</Button>
+        <Button
+          icon={<UploadOutlined />}
+          loading={uploadLoading}
+        >
+          Upload Image
+        </Button>
       </Upload>
-
-      <h2>Image Gallery</h2>
-      <Table columns={columns} dataSource={images} rowKey="filename" />
+      <Table
+        columns={columns}
+        dataSource={images}
+        className="border-2 md:w-[60%] rounded-lg"
+        rowKey="filename"
+        style={{ marginTop: 20 }}
+      />
     </div>
   );
 };

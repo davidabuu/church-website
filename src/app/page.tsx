@@ -18,10 +18,10 @@ const Page = () => {
       <AboutUs />
       <br></br>
       <Masses />
-     
+
       <Donations />
-     
-<Events/>
+
+      <Events />
 
       <Footer />
     </div>

@@ -6,18 +6,21 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const EventForm: React.FC = () => {
-  
   const [formData, setFormData] = useState({
     day: "",
     month: "",
     eventName: "",
     eventTime: "",
     eventLocation: "",
+    eventDescription: "",
   });
   const [loading, setLoading] = useState<boolean>(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -42,6 +45,7 @@ const EventForm: React.FC = () => {
 
       if (res.status === 200 && token) {
         setLoading(false);
+        window.location.reload();
       }
     } catch (error) {
       console.error(error);
@@ -49,7 +53,7 @@ const EventForm: React.FC = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-md shadow-md">
+    <div className="">
       <h2 className="text-2xl font-semibold mb-6">Event Details</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
@@ -102,6 +106,23 @@ const EventForm: React.FC = () => {
             className="mt-1 p-2 w-full border rounded-md"
             placeholder="Event Name"
             value={formData.eventName}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label
+            htmlFor="eventLocation"
+            className="block text-sm font-medium text-gray-600"
+          >
+            Event Description(Optional)
+          </label>
+          <textarea
+            id="eventDescription"
+            name="eventDescription"
+            className="mt-1 p-2 w-full border rounded-md"
+            placeholder="Event Description"
+            value={formData.eventDescription}
             onChange={handleChange}
             required
           />
