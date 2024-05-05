@@ -13,8 +13,8 @@ const MemberPage = () => {
         Become a Member
       </h2>
       <p className="md:text-3xl text-center text-2xl italic mb-8">
-        "Join us to help those in need and spread kindness. Your generosity is
-        rewarded."
+        `&quot;Join us to help those in need and spread kindness. Your
+        generosity is rewarded.`&quot;
       </p>
       <p className="italic mb-8">
         To become a member, please see the organization you want to join and

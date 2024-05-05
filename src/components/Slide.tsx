@@ -1,18 +1,45 @@
-import React, { useRef, useState } from "react";
-// Import Swiper React components
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
-
-// import required modules
 import { Pagination, Autoplay } from "swiper/modules";
-import Image from "next/image";
+
+import { message, Image } from "antd";
+import { ImageData } from "@/app/utils";
+
+interface ImageData {
+  filename: string;
+  url: string;
+}
 
 export default function Slide() {
+  const [images, setImages] = useState<ImageData[]>([]);
+
+  useEffect(() => {
+    // Fetch the list of images from the API
+    const fetchImages = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.BASE_URL}${ImageData.getAllImages}`
+        );
+
+        if (response.status === 200) {
+          // Store the fetched images in state
+          setImages(response.data);
+        } else {
+          message.error("Failed to fetch images.");
+        }
+      } catch (error) {
+        message.error("Error fetching images.");
+      }
+    };
+
+    fetchImages();
+  }, []);
+
   return (
-    <>
+    <div>
       <Swiper
         pagination={{
           dynamicBullets: true,
@@ -24,33 +51,16 @@ export default function Slide() {
         modules={[Pagination, Autoplay]}
         className="mySwiper"
       >
-        <SwiperSlide>
-          <Image
-            alt="Nil"
-            src="/pic2.jpg"
-            width={400}
-            height={400}
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            alt="Nil"
-            src="/pic4.jpg"
-            width={400}
-            height={400}
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            alt="Nil"
-            src="/pic6.jpg"
-            width={400}
-            height={400}
-          
-          />
-        </SwiperSlide>
-       
+        {/* Map over the images array to create SwiperSlide components */}
+        {images.map((image, index) => (
+          <SwiperSlide key={index}>
+            <Image
+              alt={`Image ${index}`}
+              src={`https://localhost:7007${image.url}`}
+            />
+          </SwiperSlide>
+        ))}
       </Swiper>
-    </>
+    </div>
   );
 }

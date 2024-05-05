@@ -1,15 +1,13 @@
 "use client";
 
-import ImageDisplay from "@/components/Image";
-import FileUpload from "@/components/Post";
+import AdminGalleryPage from "@/components/AdminGalleryPage";
 
 import React from "react";
 
 const page = () => {
   return (
     <div>
-     
-    <FileUpload />
+      <AdminGalleryPage />
     </div>
   );
 };
