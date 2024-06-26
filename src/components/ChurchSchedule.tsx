@@ -2,7 +2,7 @@ import { ClockCircleOutlined } from "@ant-design/icons";
 
 const ChurchSchedule = () => {
   const schedule = {
-    sundayMasses: ["6:30am", "8:30am", "6:00pm"],
+    sundayMasses: ["6:30am", "8:30am", ,"10:30am","6:00pm"],
     sundayBenediction: "5:30pm",
     weekdayMasses: "6am",
     fridayAdoration: "5:30pm",
@@ -29,7 +29,8 @@ const ChurchSchedule = () => {
           <ClockCircleOutlined />
 
           <li>Mon, Wed, Fri 6pm</li>
-          <li>Tue, Thur, 6am</li>
+          <li>Tue, Thur, 6am, Sat, 7am</li>
+      
         </ul>
       </section>
       <br></br>
@@ -67,7 +68,7 @@ const ChurchSchedule = () => {
           <ul className="flex  md:flex-row items-center">
             <ClockCircleOutlined />
 
-            <li>4pm</li>
+            <li>Sat & Sun, 4pm</li>
           </ul>
         </div>
       </section>

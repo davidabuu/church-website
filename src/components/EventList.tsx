@@ -190,8 +190,8 @@ const EventList: React.FC = () => {
           {/* App logo/name */}
 
           <h2 className="text-white text-2xl"  style={{ marginRight: "auto" }}>Event Manager</h2>
-
-          {/* Menu with links */}
+          <Link className="text-white "  href="/members-update">Members Update</Link>
+         
           <Link className="text-white "  href="/upload-image">Upload Image</Link>
         </div>
       </Header>

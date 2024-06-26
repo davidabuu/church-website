@@ -6,6 +6,7 @@ const Intro: React.FC = () => {
   return (
     <div
       className="relative min-h-screen bg-cover bg-center"
+      
       style={{ backgroundImage: 'url("./pic1.jpg")' }}
     >
       {/* Overlay */}

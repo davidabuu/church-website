@@ -15,3 +15,9 @@ export const ImageData = {
   addImage: "Image/upload",
   deleteImage: "Image/images",
 };
+
+export const MembersApi = {
+  getAllMembers: "Association/GetAllAssociations",
+  addMembers: "Association/AddNewAssociation",
+  updateMembers: "Association/UpdateAnAssociation",
+};

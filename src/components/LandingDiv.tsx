@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { ArrowLeftOutlined } from "@ant-design/icons";
+import { useEffect } from "react";
+import Aos from "aos";
 
 interface LandingDivProps {
   backgroundImageSrc: string;
@@ -10,8 +12,12 @@ const LandingDiv: React.FC<LandingDivProps> = ({
   backgroundImageSrc,
   title,
 }) => {
+  useEffect(() => {
+    Aos.init();
+  }, [])
   return (
     <div
+     
       className="relative h-[50vh] flex items-center justify-center bg-cover bg-center"
       style={{
         backgroundImage: `url("${backgroundImageSrc}")`,
