@@ -21,6 +21,7 @@ interface ImageData {
 }
 
 const AdminGalleryPage: React.FC = () => {
+  const token = localStorage.getItem("token");
   const [images, setImages] = React.useState<ImageData[]>([]);
   const [uploadLoading, setUploadLoading] = React.useState<boolean>(false);
   const [deleting, setDeleting] = React.useState<{ [key: string]: boolean }>(
@@ -58,7 +59,11 @@ const AdminGalleryPage: React.FC = () => {
     formData.append("file", file);
 
     try {
-      const response = await axios.post(uploadEndpoint, formData);
+      const response = await axios.post(uploadEndpoint, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       if (response.status === 200) {
         message.success("Image uploaded successfully!");
         window.location.reload();
@@ -84,7 +89,12 @@ const AdminGalleryPage: React.FC = () => {
 
     try {
       const response = await axios.delete(
-        `${process.env.BASE_URL}${ImageData.deleteImage}/${filename}`
+        `${process.env.BASE_URL}${ImageData.deleteImage}/${filename}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       if (response.status === 200) {
         setImages((prevImages) =>

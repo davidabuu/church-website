@@ -32,7 +32,7 @@ const LoginForm: React.FC = () => {
       localStorage.setItem("token", res.data);
       setLoading(false)
       if (res.status === 200 && localStorage.getItem("token")) {
-        router.push("/update-form");
+        router.push("/dashboard");
       }
     } catch (error: any) {
       console.log(error);

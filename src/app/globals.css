@@ -58,6 +58,10 @@ ul li {
   transition: ease-in 1.5s;
   animation-fill-mode: forwards;
 }
+.button{
+  background-color: red !important;
+  color: #fff !important;
+}
 
 .swiper-slide {
   text-align: center;

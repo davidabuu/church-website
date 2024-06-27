@@ -10,7 +10,6 @@ import {
 } from "antd";
 import { Header, Content } from "antd/es/layout/layout";
 import axios from "axios";
-
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import EventForm from "./EventUpdateForm";
@@ -175,7 +174,7 @@ const EventList: React.FC = () => {
           okButtonProps={{ className: "bg-red-500" }}
         >
           <div className="">
-            <Button className=" bg-red-500">Delete</Button>
+            <Button className="text-white bg-red-500">Delete</Button>
           </div>
         </Popconfirm>
       ),
@@ -184,28 +183,16 @@ const EventList: React.FC = () => {
 
   return (
     <>
-      {/* Header with navigation bar */}
-      <Header className="text-white" style={{ backgroundColor: "#4096ff",  padding: "0 20px" }}>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          {/* App logo/name */}
-
-          <h2 className="text-white text-2xl"  style={{ marginRight: "auto" }}>Event Manager</h2>
-          <Link className="text-white "  href="/members-update">Members Update</Link>
-         
-          <Link className="text-white "  href="/upload-image">Upload Image</Link>
-        </div>
-      </Header>
-
       {/* Content section */}
-      <Content style={{ padding: "20px" }}>
-        <div className="mt-8 p-6 bg-white  border-2 rounded-md shadow-lg">
+      <Content className="p-4 sm:p-6 bg-gray-100 min-h-screen">
+        <div className="bg-white border-2 rounded-md shadow-lg p-4 sm:p-6">
           <h2 className="text-2xl font-semibold mb-6">Event List</h2>
 
           {/* Add Event Button */}
-          <div className="mb-4">
+          <div className="mb-4 flex justify-end">
             <Button
               type="primary"
-              className="mb-4"
+              className="bg-blue-500 hover:bg-blue-600 text-white"
               onClick={showModal}
             >
               Add Event
@@ -219,11 +206,12 @@ const EventList: React.FC = () => {
             </div>
           ) : (
             <Table
-              style={{ fontSize: "20px" }}
               dataSource={events}
               columns={columns}
-              className="border-2 ] rounded-lg"
+              className="border-2 rounded-lg"
               rowKey="id"
+              pagination={{ pageSize: 5 }} // Pagination for better UX on small screens
+              scroll={{ x: 'max-content' }} // Enable horizontal scroll if needed
             />
           )}
         </div>
@@ -235,6 +223,7 @@ const EventList: React.FC = () => {
         open={isModalVisible}
         footer={null}
         onCancel={handleModalClose}
+        className="w-full max-w-2xl"
       >
         <EventForm />
       </Modal>
