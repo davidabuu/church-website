@@ -1,16 +1,13 @@
 import React, { useState } from "react";
-import MemberTable from "./MemberTable";
 import AdminGalleryPage from "./AdminGalleryPage";
 import EventList from "./EventList";
 
 const Dashboard: React.FC = () => {
-  const [activeComponent, setActiveComponent] =
-    useState<string>("Events");
+  const [activeComponent, setActiveComponent] = useState<string>("Events");
 
   const renderComponent = () => {
     switch (activeComponent) {
-      case "ChurchAssociations":
-        return <MemberTable />;
+    
       case "ImageUpload":
         return <AdminGalleryPage />;
       case "Events":

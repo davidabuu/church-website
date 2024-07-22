@@ -1,11 +1,12 @@
-"use client";
-import { Events } from "@/app/utils";
+'use client'
 import { Button } from "antd";
-import axios from "axios";
-import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-const EventForm: React.FC = () => {
+interface EventFormProps {
+  onAddEvent: (newEvent: any) => void;
+}
+
+const EventForm: React.FC<EventFormProps> = ({ onAddEvent }) => {
   const [formData, setFormData] = useState({
     day: "",
     month: "",
@@ -25,35 +26,21 @@ const EventForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      setLoading(true);
-
-      // Get the token from localStorage
-      const token = localStorage.getItem("token");
-
-      const res = await axios.post(
-        `${process.env.BASE_URL}${Events.addEvent}` || "",
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      console.log(res);
-
-      if (res.status === 200 && token) {
-        setLoading(false);
-        window.location.reload();
-      }
-    } catch (error) {
-      console.error(error);
-    }
+    setLoading(true);
+    await onAddEvent(formData);
+    setLoading(false);
+    setFormData({
+      day: "",
+      month: "",
+      eventName: "",
+      eventTime: "",
+      eventLocation: "",
+      eventDescription: "",
+    });
   };
 
   return (
-    <div className="">
+    <div>
       <h2 className="text-2xl font-semibold mb-6">Event Details</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
@@ -112,10 +99,10 @@ const EventForm: React.FC = () => {
         </div>
         <div className="mb-4">
           <label
-            htmlFor="eventLocation"
+            htmlFor="eventDescription"
             className="block text-sm font-medium text-gray-600"
           >
-            Event Description(Optional)
+            Event Description (Optional)
           </label>
           <textarea
             id="eventDescription"
@@ -124,7 +111,6 @@ const EventForm: React.FC = () => {
             placeholder="Event Description"
             value={formData.eventDescription}
             onChange={handleChange}
-            required
           />
         </div>
         <div className="mb-4">

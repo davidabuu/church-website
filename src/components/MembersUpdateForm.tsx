@@ -68,7 +68,7 @@ const MemberTable: React.FC = () => {
       setLoading(true);
       const token = localStorage.getItem("token");
       await axios.put(
-        `${process.env.BASE_URL}${MembersApi.updateMember}/${currentMember?.id}`,
+        `${process.env.BASE_URL}${MembersApi.updateMembers}/${currentMember?.id}`,
         values,
         {
           headers: {

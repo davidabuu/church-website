@@ -39,7 +39,7 @@ const MemberPage = () => {
         To become a member, please see the organization you want to join and
         transfer <strong>N1000</strong> to the following persons
       </p>
-      <div className="text-xl mb-4 w-full max-w-2xl grid grid-cols-1 gap-4">
+      {/* <div className="text-xl mb-4 w-full max-w-2xl grid grid-cols-1 gap-4">
         {associations.length > 0 ? (
           associations.map((association) => (
             <div key={association.id} className="flex mb-3 flex-col bg-white p-4 rounded-lg shadow-md">
@@ -51,7 +51,7 @@ const MemberPage = () => {
         ) : (
           <p>Loading associations...</p>
         )}
-      </div>
+      </div> */}
 
       <p className="italic font-bold text-xl mb-8">
         Please call your association president for more info.

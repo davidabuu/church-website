@@ -21,7 +21,9 @@ const Page = () => {
 
       <Donations />
 
-      <Events />
+      <Events onAddEvent={function (newEvent: any): void {
+        throw new Error("Function not implemented.");
+      } } />
 
       <Footer />
     </div>

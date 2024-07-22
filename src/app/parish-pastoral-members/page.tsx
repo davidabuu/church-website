@@ -1,3 +1,4 @@
+
 import Footer from "@/components/Footer";
 import LandingDiv from "@/components/LandingDiv";
 
@@ -5,10 +6,8 @@ import { Metadata } from "next";
 import React from "react";
 export const metadata: Metadata = {
   title: "Pasotral Members | Annunctiation Parish",
-  description:
-    "",
+  description: "",
 };
-
 
 const Page = () => {
   const members: string[] = [
@@ -33,7 +32,6 @@ const Page = () => {
 
   return (
     <div>
-      
       <LandingDiv
         backgroundImageSrc="/pic12.jpg"
         title="Have a Glance of the Pastoral Members"
@@ -56,7 +54,6 @@ const Page = () => {
         </div>
       </div>
       <br></br>
-      
 
       <Footer />
     </div>

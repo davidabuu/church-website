@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useEffect } from "react";
@@ -14,10 +15,9 @@ const LandingDiv: React.FC<LandingDivProps> = ({
 }) => {
   useEffect(() => {
     Aos.init();
-  }, [])
+  }, []);
   return (
     <div
-     
       className="relative h-[50vh] flex items-center justify-center bg-cover bg-center"
       style={{
         backgroundImage: `url("${backgroundImageSrc}")`,
