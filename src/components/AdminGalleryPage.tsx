@@ -18,7 +18,7 @@ interface ImageData {
 }
 
 const AdminGalleryPage: React.FC = () => {
-
+  const token ="token";
   const [images, setImages] = React.useState<ImageData[]>([]);
   const [uploadLoading, setUploadLoading] = React.useState<boolean>(false);
   const [deleting, setDeleting] = React.useState<{ [key: string]: boolean }>({});
