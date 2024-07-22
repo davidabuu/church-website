@@ -1,32 +1,32 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import fs from "fs";
+import fs from "fs/promises";
 import path from "path";
 
-const getEventsFromFile = () => {
+const getEventsFromFile = async () => {
   const filePath = path.join(process.cwd(), "data", "events.json");
-  if (!fs.existsSync(filePath)) {
-    console.error("File path does not exist:", filePath);
-    return [];
-  }
-  const fileContents = fs.readFileSync(filePath, "utf8");
   try {
+    const fileContents = await fs.readFile(filePath, "utf8");
     return JSON.parse(fileContents);
   } catch (err) {
-    console.error("Error parsing JSON file:", err);
+    if (err.code === "ENOENT") {
+      console.error("File path does not exist:", filePath);
+    } else {
+      console.error("Error reading or parsing JSON file:", err);
+    }
     return [];
   }
 };
 
-const saveEventsToFile = (events) => {
+const saveEventsToFile = async (events) => {
   const filePath = path.join(process.cwd(), "data", "events.json");
   try {
-    fs.writeFileSync(filePath, JSON.stringify(events, null, 2));
+    await fs.writeFile(filePath, JSON.stringify(events, null, 2));
   } catch (err) {
     console.error("Error writing to JSON file:", err);
   }
 };
 
-export default function handler(
+export default async function handler(
   req = new NextApiRequest(),
   res = new NextApiResponse()
 ) {
@@ -36,7 +36,7 @@ export default function handler(
   console.log("Request method:", method);
   console.log("Request id:", id);
 
-  let events = getEventsFromFile();
+  let events = await getEventsFromFile();
 
   switch (method) {
     case "GET":
@@ -54,14 +54,14 @@ export default function handler(
     case "POST":
       const newEvent = { ...req.body, id: Date.now() };
       events.push(newEvent);
-      saveEventsToFile(events);
+      await saveEventsToFile(events);
       res.status(201).json(newEvent);
       break;
     case "PUT":
       const index = events.findIndex((event) => event.id === Number(id));
       if (index !== -1) {
         events[index] = { ...events[index], ...req.body };
-        saveEventsToFile(events);
+        await saveEventsToFile(events);
         res.status(200).json(events[index]);
       } else {
         res.status(404).json({ message: "Event not found" });
@@ -69,7 +69,7 @@ export default function handler(
       break;
     case "DELETE":
       events = events.filter((event) => event.id !== Number(id));
-      saveEventsToFile(events);
+      await saveEventsToFile(events);
       res.status(204).end();
       break;
     default:
