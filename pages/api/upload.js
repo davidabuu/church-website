@@ -1,8 +1,7 @@
 import formidable from "formidable";
 import fs from "fs";
 import path from "path";
-
-var mv = require("mv");
+import mv from "mv";
 
 export const config = {
   api: {
@@ -10,66 +9,90 @@ export const config = {
   },
 };
 
-export default async (req, res) => {
-  const uploadDir = path.join(process.cwd(), "public", "uploads");
+const uploadDir = path.join(process.cwd(), "public", "uploads");
 
+// Ensure the upload directory exists
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
+
+export default async (req, res) => {
   switch (req.method) {
     case "POST":
-      const form = formidable({});
-      form.parse(req, (err, fields, files) => {
-        if (err) {
-          return res.status(500).json({ error: "Error parsing the files" });
-        }
+      try {
+        const form = new formidable.IncomingForm();
+        form.uploadDir = uploadDir;
+        form.keepExtensions = true;
 
-        const oldFilePath = files.file[0].filepath;
-        const newFilePath = path.join(
-          uploadDir,
-          files.file[0].originalFilename
-        );
-
-        mv(oldFilePath, newFilePath, { mkdirp: true }, (error) => {
-          if (error) {
-            return res.status(500).json({ error: "Error moving the file" });
+        form.parse(req, (err, fields, files) => {
+          if (err) {
+            console.error("Error parsing the files", err);
+            return res.status(500).json({ error: "Error parsing the files" });
           }
-          res.status(200).json({
-            message: "File uploaded successfully",
-            filename: files.file[0].originalFilename,
+
+          const oldFilePath = files.file.filepath;
+          const newFilePath = path.join(uploadDir, files.file.originalFilename);
+
+          mv(oldFilePath, newFilePath, { mkdirp: true }, (error) => {
+            if (error) {
+              console.error("Error moving the file", error);
+              return res.status(500).json({ error: "Error moving the file" });
+            }
+            res.status(200).json({
+              message: "File uploaded successfully",
+              filename: files.file.originalFilename,
+            });
           });
         });
-      });
+      } catch (error) {
+        console.error("Unexpected error in POST handler", error);
+        res.status(500).json({ error: "Internal server error" });
+      }
       break;
 
     case "GET":
-      fs.readdir(uploadDir, (err, files) => {
-        if (err) {
-          return res
-            .status(500)
-            .json({ error: "Error reading the upload directory" });
-        }
+      try {
+        fs.readdir(uploadDir, (err, files) => {
+          if (err) {
+            console.error("Error reading the upload directory", err);
+            return res
+              .status(500)
+              .json({ error: "Error reading the upload directory" });
+          }
 
-        const images = files.map((file) => ({
-          filename: file,
-          url: `/uploads/${file}`,
-        }));
+          const images = files.map((file) => ({
+            filename: file,
+            url: `/uploads/${file}`,
+          }));
 
-        res.status(200).json(images);
-      });
+          res.status(200).json(images);
+        });
+      } catch (error) {
+        console.error("Unexpected error in GET handler", error);
+        res.status(500).json({ error: "Internal server error" });
+      }
       break;
 
     case "DELETE":
-      const { filename } = req.query;
-      if (!filename) {
-        return res.status(400).json({ error: "Filename is required" });
-      }
-
-      const filePath = path.join(uploadDir, filename);
-
-      fs.unlink(filePath, (err) => {
-        if (err) {
-          return res.status(500).json({ error: "Error deleting the file" });
+      try {
+        const { filename } = req.query;
+        if (!filename) {
+          return res.status(400).json({ error: "Filename is required" });
         }
-        res.status(200).json({ message: "File deleted successfully" });
-      });
+
+        const filePath = path.join(uploadDir, filename);
+
+        fs.unlink(filePath, (err) => {
+          if (err) {
+            console.error("Error deleting the file", err);
+            return res.status(500).json({ error: "Error deleting the file" });
+          }
+          res.status(200).json({ message: "File deleted successfully" });
+        });
+      } catch (error) {
+        console.error("Unexpected error in DELETE handler", error);
+        res.status(500).json({ error: "Internal server error" });
+      }
       break;
 
     default:
