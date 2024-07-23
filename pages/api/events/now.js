@@ -6,6 +6,7 @@ let inMemoryEvents = []; // In-memory storage for production
 
 const getEventsFromFile = async () => {
   if (process.env.NODE_ENV === 'production') {
+    console.log("Using in-memory storage in production");
     return inMemoryEvents;
   } else {
     const filePath = path.join(process.cwd(), "data", "events.json");
@@ -25,6 +26,7 @@ const getEventsFromFile = async () => {
 
 const saveEventsToFile = async (events) => {
   if (process.env.NODE_ENV === 'production') {
+    console.log("Using in-memory storage in production");
     inMemoryEvents = events;
   } else {
     const filePath = path.join(process.cwd(), "data", "events.json");
