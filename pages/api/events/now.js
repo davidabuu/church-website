@@ -2,27 +2,37 @@ import { NextApiRequest, NextApiResponse } from "next";
 import fs from "fs/promises";
 import path from "path";
 
+let inMemoryEvents = []; // In-memory storage for production
+
 const getEventsFromFile = async () => {
-  const filePath = path.join(process.cwd(), "data", "events.json");
-  try {
-    const fileContents = await fs.readFile(filePath, "utf8");
-    return JSON.parse(fileContents);
-  } catch (err) {
-    if (err.code === "ENOENT") {
-      console.error("File path does not exist:", filePath);
-    } else {
-      console.error("Error reading or parsing JSON file:", err);
+  if (process.env.NODE_ENV === 'production') {
+    return inMemoryEvents;
+  } else {
+    const filePath = path.join(process.cwd(), "data", "events.json");
+    try {
+      const fileContents = await fs.readFile(filePath, "utf8");
+      return JSON.parse(fileContents);
+    } catch (err) {
+      if (err.code === "ENOENT") {
+        console.error("File path does not exist:", filePath);
+      } else {
+        console.error("Error reading or parsing JSON file:", err);
+      }
+      return [];
     }
-    return [];
   }
 };
 
 const saveEventsToFile = async (events) => {
-  const filePath = path.join(process.cwd(), "data", "events.json");
-  try {
-    await fs.writeFile(filePath, JSON.stringify(events, null, 2));
-  } catch (err) {
-    console.error("Error writing to JSON file:", err);
+  if (process.env.NODE_ENV === 'production') {
+    inMemoryEvents = events;
+  } else {
+    const filePath = path.join(process.cwd(), "data", "events.json");
+    try {
+      await fs.writeFile(filePath, JSON.stringify(events, null, 2));
+    } catch (err) {
+      console.error("Error writing to JSON file:", err);
+    }
   }
 };
 
