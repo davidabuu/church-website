@@ -26,10 +26,7 @@ const saveEventsToFile = async (events) => {
   }
 };
 
-export default async function handler(
-  req = new NextApiRequest(),
-  res = new NextApiResponse()
-) {
+export default async function handler(req, res) {
   const { method } = req;
   const { id } = req.query;
 

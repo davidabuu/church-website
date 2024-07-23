@@ -31,6 +31,7 @@ const EventList: React.FC = () => {
   const fetchEvents = async () => {
     setLoading(true);
     const events = await getEvents();
+    console.log(events)
     setEvents(events);
     setLoading(false);
   };
